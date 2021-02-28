@@ -2,8 +2,28 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
 
+// Your JavaScript code goes here!
+const modal = document.querySelector("div#modal")
+
+function toggleError(){
+  modal.classList.toggle('hidden')
+}
+
+document.body.addEventListener('click', event => {
+  if(event.target.matches("span.like-glyph")){
+    mimicServerCall()
+    .then(()=> {
+      console.log("hi")
+      event.target.classList.toggle('activated-heart')
+    })
+    .catch(error => {
+      console.log(error)
+      toggleError()
+      setTimeout(toggleError, 5000)
+    })
+  }
+})
 
 
 
